@@ -319,7 +319,7 @@ floral-background {
   <div class="floral-border bottom-border"></div>
 </div>
 <div class="audio-container">
-  <audio src="background2.mp3" autoplay loop>
+  <audio id ="Audio" src="background2.mp3" autoplay loop>
 <!--     <source  type="audio/mpeg"> -->
   </audio>
 </div>
@@ -351,6 +351,8 @@ floral-background {
       carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
     }
 
+  
+
     function startSyncedCarousels() {
       const bgImages = document.querySelectorAll('.background-carousel img');
       const carouselImages = document.querySelectorAll('#carousel img');
@@ -367,6 +369,12 @@ floral-background {
 
       }, 3000); // Change every 3 seconds
     }
+
+    function playAudio() {
+      var audio = document.getElementById("Audio");
+      audio.play();
+    }
+  
 </script>
 </body>
 </html>
