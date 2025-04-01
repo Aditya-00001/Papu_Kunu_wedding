@@ -54,12 +54,23 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   display: none;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  width: 5px; /* Thin scrollbar */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .scroll-container.open {
@@ -328,12 +339,12 @@ venue-link:hover {
     </div>
     <div class="wedding-section">
       <h2>Wedding Ceremony</h2>
-     <p class="date">Wedding: <em>18 April 2025</em> at <a href="https://maps.app.goo.gl/UQXzdaT8WpzM8jNV9" class="venue-link" target="_blank"><em>Fortune ITC Hotel</em>, <em>Baliapanda,Puri</em></a></p>
+      <p class="date">Wedding: <em>18 April 2025</em> at <a href="https://maps.app.goo.gl/UQXzdaT8WpzM8jNV9" class="venue-link" target="_blank"><em>Fortune ITC Hotel</em>, <em>Baliapanda,Puri</em></a></p>
       <p>Witness our sacred union.</p>
     </div>
     <div class="reception-section">
       <h2>Reception</h2>
-     <p class="date">Reception: <em>20 April 2025</em> at <a href="https://maps.app.goo.gl/eeBG4SrXoqyzRWwd7" class="venue-link" target="_blank"><em>Hotel Pushpak and Convention</em>, <em>Dhauli Square, Bhubaneswar</em></a></p>
+      <p class="date">Reception: <em>20 April 2025</em> at <a href="https://maps.app.goo.gl/eeBG4SrXoqyzRWwd7" class="venue-link" target="_blank"><em>Hotel Pushpak and Convention</em>, <em>Dhauli Square, Bhubaneswar</em></a></p>
       <p>Celebrate our marriage with food and joy!</p>
     </div>
     <div class="decorative-line"></div>
