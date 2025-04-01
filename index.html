@@ -4,7 +4,7 @@
 <title>Our Wedding Invitation</title>
 <style>
 body {
-  font-family: 'serif'; /* Fallback font */
+  font-family: 'serif';
   margin: 0;
   padding: 0;
   display: flex;
@@ -14,7 +14,6 @@ body {
   overflow: auto;
 }
 
-/* Background Image Carousel */
 .background-carousel {
   position: fixed;
   top: 0;
@@ -22,14 +21,14 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1; /* Behind other content */
+  z-index: -1;
 }
 
 .background-carousel img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(5px); /* Blur effect */
+  filter: blur(5px);
   position: absolute;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -48,15 +47,17 @@ body {
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Slow transition */
+  transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform-origin: center;
   transform: scaleY(0);
   max-height: 90vh;
   overflow-y: auto;
+  display: none;
 }
 
 .scroll-container.open {
   transform: scaleY(1);
+  display: block;
 }
 
 .scroll-content {
@@ -96,10 +97,11 @@ body {
   left: 20px;
   display: flex;
   align-items: center;
+  display: none;
 }
 
 audio {
-  width: 0; /* Hide the default audio controls */
+  width: 0;
   height: 0;
 }
 
@@ -203,7 +205,7 @@ audio {
   padding: 20px;
   background: #f9f3f1;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .haldi-section h2, .sangeet-section h2, .wedding-section h2, .reception-section h2 {
@@ -235,16 +237,30 @@ floral-background {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.welcome-message{
-    font-size: 2em;
+.welcome-message p{
+    font-size: 3em;
     font-family: 'Dancing Script', cursive;
-    color: #c27ba0;
+    color: #fff9fc;
     margin-bottom: 20px;
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.show-button {
+    background: #c27ba0;
+    color: white;
+    border: none;
+    padding: 20px; /* Further decreased padding */
+    font-size: 0.9em; /* Further decreased font size */
+    cursor: pointer;
+    border-radius: 6px; /* Slightly smaller radius */
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 </style>
@@ -252,7 +268,11 @@ floral-background {
 <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 </head>
 <body>
-<div class="welcome-message" id="welcomeMessage">Nayak Family Welcomes You!</div>
+<div class="welcome-message" id="welcomeMessage">
+  <p>Nayak Family Welcomes You!</p>
+  <div></div>
+  <button class="show-button" id="showButton">Show</button>
+</div>
 <div class="background-carousel">
   <img src="eng1.jpg" alt="Background 1" class="active">
   <img src="eng2.jpg" alt="Background 2">
@@ -328,22 +348,29 @@ floral-background {
   <div class="floral-border bottom-border"></div>
 </div>
 <div class="audio-container">
-  <audio id="audioPlayer" autoplay loop>
+  <audio id="audioPlayer" loop>
     <source src="background2.mp3" type="audio/mpeg">
   </audio>
   <button class="audio-button" id="audioButton">Pause</button>
 </div>
 <script>
   window.onload = function() {
-    setTimeout(function() {
-      document.getElementById('welcomeMessage').style.display = 'none';
-      document.getElementById('scroll').classList.add('open');
-    }, 2000);
-    startSyncedCarousels();
-
+    const showButton = document.getElementById('showButton');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const scrollContainer = document.getElementById('scroll');
+    const audioContainer = document.querySelector('.audio-container');
     const audioPlayer = document.getElementById('audioPlayer');
     const audioButton = document.getElementById('audioButton');
-    let isPlaying = true; // Audio starts playing
+    let isPlaying = true;
+
+    showButton.addEventListener('click', () => {
+      welcomeMessage.style.display = 'none';
+      scrollContainer.classList.add('open');
+      audioContainer.style.display = 'flex';
+      audioPlayer.play().catch(error => {
+        console.error("Autoplay prevented", error);
+      });
+    });
 
     audioButton.addEventListener('click', () => {
       if (isPlaying) {
@@ -359,11 +386,6 @@ floral-background {
     });
 
     audioPlayer.preload = 'auto';
-
-    //Attempt to play audio on load
-    audioPlayer.play().catch(error =>{
-        console.error("Autoplay prevented", error);
-    });
   };
 
     let slideIndex = 0;
@@ -400,7 +422,7 @@ floral-background {
         // Main Carousel
         showSlide(currentIndex);
 
-      }, 3000); // Change every 3 seconds
+      }, 3000);
     }
 </script>
 </body>
