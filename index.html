@@ -4,7 +4,7 @@
 <title>Our Wedding Invitation</title>
 <style>
 body {
-  font-family: 'Georgia', serif;
+  font-family: 'serif'; /* Fallback font */
   margin: 0;
   padding: 0;
   display: flex;
@@ -249,7 +249,6 @@ floral-background {
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 </head>
 <body>
@@ -332,26 +331,41 @@ floral-background {
   <audio id="audioPlayer" autoplay loop>
     <source src="background2.mp3" type="audio/mpeg">
   </audio>
-  <button class="audio-button" id="audioButton">Mute</button>
+  <button class="audio-button" id="audioButton">Pause</button>
 </div>
 <script>
   window.onload = function() {
     setTimeout(function() {
-      document.getElementById('welcomeMessage').style.display = 'none'; //remove welcome message
+      document.getElementById('welcomeMessage').style.display = 'none';
       document.getElementById('scroll').classList.add('open');
-    }, 2000); //delay of two seconds for the scroll to open
+    }, 2000);
     startSyncedCarousels();
 
     const audioPlayer = document.getElementById('audioPlayer');
     const audioButton = document.getElementById('audioButton');
-    let isMuted = false;
+    let isPlaying = true; // Audio starts playing
 
     audioButton.addEventListener('click', () => {
-      isMuted = !isMuted;
-      audioPlayer.muted = isMuted;
-      audioButton.textContent = isMuted ? 'Play' : 'Mute';
+      if (isPlaying) {
+        audioPlayer.pause();
+        audioButton.textContent = 'Play';
+      } else {
+        audioPlayer.play().catch(error => {
+          console.error("Audio playback failed:", error);
+        });
+        audioButton.textContent = 'Pause';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    audioPlayer.preload = 'auto';
+
+    //Attempt to play audio on load
+    audioPlayer.play().catch(error =>{
+        console.error("Autoplay prevented", error);
     });
   };
+
     let slideIndex = 0;
 
     function changeSlide(n) {
