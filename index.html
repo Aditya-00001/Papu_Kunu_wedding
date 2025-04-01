@@ -44,7 +44,7 @@ body {
   width: 85%;
   max-width: 650px;
   height: auto;
-  background: #fff8e1; /* Light Yellow */
+  background: #fff8e1;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -54,10 +54,13 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   display: none;
+  border: 4px solid #d8bfd8; /* Added Border */
+  border-image: linear-gradient(to right, #d8bfd8, #e6c9e6, #d8bfd8) 1; /* Gradient Border */
+  border-image-slice: 1;
 }
 
 .scroll-container::-webkit-scrollbar {
-  width: 5px; /* Thin scrollbar */
+  width: 5px;
 }
 
 .scroll-container::-webkit-scrollbar-track {
@@ -272,7 +275,7 @@ audio {
 .reception-section h2 { color: #60b27f; }
 
 floral-background {
-  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(0, 0, 255, 0.85)), url('floral-background.jpg');
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(0, 0, 255, 0.85)), url('download.jpeg');
   background-size: cover;
   background-position: center;
   padding: 30px;
@@ -317,12 +320,13 @@ floral-background {
 }
 
 .venue-link {
-    color: #007bff; /* Blue color for links */
+    color: #007bff;
     text-decoration: none;
 }
 venue-link:hover {
     text-decoration: underline;
 }
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
@@ -373,7 +377,7 @@ venue-link:hover {
         <p>7:00 PM Onwards</p>
         <p><a href="https://maps.app.goo.gl/8CXwCKvVNGyeVXoA8" class="venue-link" target="_blank">Pushpak Hotel, Kalpana Square, Bhubaneswar</a></p>
       </div>
-      <p>Let's celebrate with music and dance!</p>
+      <p class="qoute">Let's celebrate with music and dance!</p>
     </div>
     <div class="event-section haldi-section" onclick="this.classList.toggle('flipped')">
       <h2>Haldi Ceremony</h2>
@@ -382,7 +386,7 @@ venue-link:hover {
         <p>9:00 AM Onwards</p>
         <p>Residence, Sisupalgarh, Bhubaneswar</p>
       </div>
-      <p>Join us for a colorful celebration of Haldi!</p>
+      <p class="qoute">Join us for a colorful celebration of Haldi!</p>
     </div>
     <div class="event-section wedding-section" onclick="this.classList.toggle('flipped')">
       <h2>Wedding Ceremony</h2>
@@ -391,7 +395,7 @@ venue-link:hover {
         <p>10:00 PM Onwards</p>
         <p><a href="https://maps.app.goo.gl/UQXzdaT8WpzM8jNV9" class="venue-link" target="_blank">Fortune ITC Hotel, Baliapanda,Puri</a></p>
       </div>
-      <p>Witness our sacred union.</p>
+      <p class="qoute">Witness our sacred union.</p>
     </div>
     <div class="event-section reception-section" onclick="this.classList.toggle('flipped')">
       <h2>Reception</h2>
@@ -400,7 +404,7 @@ venue-link:hover {
         <p>7:30 PM Onwards</p>
         <p><a href="https://maps.app.goo.gl/eeBG4SrXoqyzRWwd7" class="venue-link" target="_blank">Hotel Pushpak and Convention, Dhauli Square, Bhubaneswar</a></p>
       </div>
-      <p>Celebrate our marriage with food and joy!</p>
+      <p class="qoute"> Celebrate our marriage with food and joy!</p>
     </div>
     <div class="decorative-line"></div>
     <p>Please join us as we begin our journey of love and togetherness.</p>
