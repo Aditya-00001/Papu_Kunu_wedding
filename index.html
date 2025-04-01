@@ -43,7 +43,7 @@ body {
   width: 85%;
   max-width: 650px;
   height: auto;
-  background: #f5f5f5;
+  background: #fff8e1; /* Light Yellow */
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -53,6 +53,12 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   display: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .scroll-container.open {
@@ -203,7 +209,7 @@ audio {
 .haldi-section, .sangeet-section, .wedding-section, .reception-section {
   margin-top: 30px;
   padding: 20px;
-  background: #f9f3f1;
+  background: #fff3e0; /* Light Orange */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -238,29 +244,29 @@ floral-background {
 }
 
 .welcome-message p{
-    font-size: 3em;
-    font-family: 'Dancing Script', cursive;
-    color: #fff9fc;
-    margin-bottom: 20px;
-    text-align: center;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  font-size: 3em;
+  font-family: 'Dancing Script', cursive;
+  color: #faf6f8;
+  margin-bottom: 20px;
+  text-align: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .show-button {
-    background: #c27ba0;
-    color: white;
-    border: none;
-    padding: 20px; /* Further decreased padding */
-    font-size: 0.9em; /* Further decreased font size */
-    cursor: pointer;
-    border-radius: 6px; /* Slightly smaller radius */
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translateX(-50%);
+  background: #c27ba0;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 6px;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 </style>
@@ -285,20 +291,20 @@ floral-background {
     <h1>You are cordially invited</h1>
     <img src="couple.png" alt="Couple" class="couple-image">
     <p>With the blessings of our families,</p>
-    <p>We, <b><em>Kiran</em></b> and <b><em>Girija</em></b>, are delighted to invite you to our wedding ceremony.</p>
+    <p>We, <b><em>Girija</em></b> and <b><em>Kiran</em></b>, are delighted to invite you to our wedding ceremony.</p>
     <div class="decorative-line"></div>
     <div class="parents-section">
-      <div>
-        <p>Parents of the Bride:</p>
-        <p>Mrs. Sanjukta Biswal</p>
-        <p>&</p>
-        <p>Mr. Krushna Ch. Parida</p>
-      </div>
       <div>
         <p>Parents of the Groom:</p>
         <p>Mrs. Minakshi Nayak</p>
         <p>&</p>
         <p>Mr. Prafulla Ch. Nayak</p>
+      </div>
+      <div>
+        <p>Parents of the Bride:</p>
+        <p>Mrs. Sanjukta Biswal</p>
+        <p>&</p>
+        <p>Mr. Krushna Ch. Parida</p>
       </div>
     </div>
     <div class="decorative-line"></div>
@@ -307,25 +313,21 @@ floral-background {
       <p class="date">Sangeet: <em>16 April 2025</em> at <em>Pushpak Hotel</em>, <em>Kalpana Square, Bhubaneswar</em></p>
       <p>Let's celebrate with music and dance!</p>
     </div>
-
     <div class="haldi-section">
       <h2>Haldi Ceremony</h2>
       <p class="date">Haldi: <em>18 April 2025</em> at <em>Residence</em>, <em>Sisupalgarh, Bhubaneswar</em></p>
       <p>Join us for a colorful celebration of Haldi!</p>
     </div>
-
     <div class="wedding-section">
       <h2>Wedding Ceremony</h2>
       <p class="date">Wedding: <em>18 April 2025</em> at <em>Fortune ITC Hotel</em>, <em>Balianta,Puri</em></p>
       <p>Witness our sacred union.</p>
     </div>
-
     <div class="reception-section">
       <h2>Reception</h2>
       <p class="date">Reception: <em>18 April 2025</em> at <em>Hotel Pushpak and Convention</em>, <em>Dhauli Square, Bhubaneswar</em></p>
       <p>Celebrate our marriage with food and joy!</p>
     </div>
-
     <div class="decorative-line"></div>
     <p>Please join us as we begin our journey of love and togetherness.</p>
     <p>Your presence will make our celebration even more special.</p>
@@ -336,14 +338,13 @@ floral-background {
         <img src="eng3.jpg" alt="Image 3">
         <img src="eng4.jpg" alt="Image 4">
       </div>
-
       <div class="carousel-nav">
         <button onclick="changeSlide(-1)">❮</button>
         <button onclick="changeSlide(1)">❯</button>
       </div>
     </div>
     <div class="video-section">
-      </div>
+    </div>
   </div>
   <div class="floral-border bottom-border"></div>
 </div>
@@ -388,42 +389,42 @@ floral-background {
     audioPlayer.preload = 'auto';
   };
 
-    let slideIndex = 0;
+  let slideIndex = 0;
 
-    function changeSlide(n) {
-      showSlide(slideIndex += n);
+  function changeSlide(n) {
+    showSlide(slideIndex += n);
+  }
+
+  function showSlide(n) {
+    const carousel = document.getElementById('carousel');
+    const images = carousel.getElementsByTagName('img');
+
+    if (n >= images.length) {
+      slideIndex = 0;
+    }
+    if (n < 0) {
+      slideIndex = images.length - 1;
     }
 
-    function showSlide(n) {
-      const carousel = document.getElementById('carousel');
-      const images = carousel.getElementsByTagName('img');
+    carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
+  }
 
-      if (n >= images.length) {
-        slideIndex = 0;
-      }
-      if (n < 0) {
-        slideIndex = images.length - 1;
-      }
+  function startSyncedCarousels() {
+    const bgImages = document.querySelectorAll('.background-carousel img');
+    const carouselImages = document.querySelectorAll('#carousel img');
+    let currentIndex = 0;
 
-      carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
-    }
+    setInterval(() => {
+      // Background Carousel
+      bgImages[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % bgImages.length;
+      bgImages[currentIndex].classList.add('active');
 
-    function startSyncedCarousels() {
-      const bgImages = document.querySelectorAll('.background-carousel img');
-      const carouselImages = document.querySelectorAll('#carousel img');
-      let currentIndex = 0;
+      // Main Carousel
+      showSlide(currentIndex);
 
-      setInterval(() => {
-        // Background Carousel
-        bgImages[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % bgImages.length;
-        bgImages[currentIndex].classList.add('active');
-
-        // Main Carousel
-        showSlide(currentIndex);
-
-      }, 3000);
-    }
+    }, 3000);
+  }
 </script>
 </body>
 </html>
